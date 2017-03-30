@@ -1,25 +1,25 @@
-<a name="module_find-last-index-x"></a>
+<a name="module_find-index-x"></a>
 
-## find-last-index-x
-<a href="https://travis-ci.org/Xotic750/find-last-index-x"
+## find-index-x
+<a href="https://travis-ci.org/Xotic750/find-index-x"
 title="Travis status">
 <img
-src="https://travis-ci.org/Xotic750/find-last-index-x.svg?branch=master"
+src="https://travis-ci.org/Xotic750/find-index-x.svg?branch=master"
 alt="Travis status" height="18">
 </a>
-<a href="https://david-dm.org/Xotic750/find-last-index-x"
+<a href="https://david-dm.org/Xotic750/find-index-x"
 title="Dependency status">
-<img src="https://david-dm.org/Xotic750/find-last-index-x.svg"
+<img src="https://david-dm.org/Xotic750/find-index-x.svg"
 alt="Dependency status" height="18"/>
 </a>
 <a
-href="https://david-dm.org/Xotic750/find-last-index-x#info=devDependencies"
+href="https://david-dm.org/Xotic750/find-index-x#info=devDependencies"
 title="devDependency status">
-<img src="https://david-dm.org/Xotic750/find-last-index-x/dev-status.svg"
+<img src="https://david-dm.org/Xotic750/find-index-x/dev-status.svg"
 alt="devDependency status" height="18"/>
 </a>
-<a href="https://badge.fury.io/js/find-last-index-x" title="npm version">
-<img src="https://badge.fury.io/js/find-last-index-x.svg"
+<a href="https://badge.fury.io/js/find-index-x" title="npm version">
+<img src="https://badge.fury.io/js/find-index-x.svg"
 alt="npm version" height="18">
 </a>
 
@@ -32,7 +32,7 @@ Requires ES3 or above.
 **Author**: Xotic750 <Xotic750@gmail.com>  
 **License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
 **Copyright**: Xotic750  
-<a name="exp_module_find-last-index-x--module.exports"></a>
+<a name="exp_module_find-index-x--module.exports"></a>
 
 ### `module.exports` ⇒ <code>number</code> ⏏
 Like `findIndex`, this method returns an index in the array, if an element
