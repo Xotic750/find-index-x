@@ -46,7 +46,6 @@
   var toObject = require('to-object-x');
   var isString = require('is-string');
   var assertIsCallable = require('assert-is-callable-x');
-  var requireObjectCoercible = require('require-object-coercible-x');
   var pFindIndex = Array.prototype.findIndex;
 
   var implemented = pFindIndex && ([, 1].findIndex(function (item, idx) {
@@ -56,12 +55,13 @@
   var findIdx;
   if (implemented) {
     findIdx = function findIndex(array, callback) {
-      requireObjectCoercible(array);
+      var object = toObject(array);
+      assertIsCallable(callback);
       var args = [callback];
       if (arguments.length > 2) {
         args.push(arguments[2]);
       }
-      return pFindIndex.apply(array, args);
+      return pFindIndex.apply(object, args);
     };
   } else {
     findIdx = function findIndex(array, callback) {

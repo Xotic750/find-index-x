@@ -31,7 +31,6 @@
   "dependencies": {
     "assert-is-callable-x": "^1.2.0",
     "is-string": "^1.0.4",
-    "require-object-coercible-x": "^1.2.0",
     "to-length-x": "^1.2.0",
     "to-object-x": "^1.2.1"
   },
