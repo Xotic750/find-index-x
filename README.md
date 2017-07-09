@@ -1,6 +1,8 @@
 <a name="module_find-index-x"></a>
 
 ## find-index-x
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Xotic750/find-index-x.svg)](https://greenkeeper.io/)
 <a href="https://travis-ci.org/Xotic750/find-index-x"
 title="Travis status">
 <img
