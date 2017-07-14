@@ -1,6 +1,6 @@
 /**
  * @file This method returns the index of the first element in the array that satisfies the provided testing function.
- * @version 1.2.0
+ * @version 1.3.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -12,7 +12,7 @@
 var toLength = require('to-length-x');
 var toObject = require('to-object-x');
 var isString = require('is-string');
-var assertIsCallable = require('assert-is-callable-x');
+var assertIsFunction = require('assert-is-function-x');
 var pFindIndex = Array.prototype.findIndex;
 
 // eslint-disable-next-line no-sparse-arrays
@@ -24,7 +24,7 @@ var findIdx;
 if (implemented) {
   findIdx = function findIndex(array, callback) {
     var object = toObject(array);
-    assertIsCallable(callback);
+    assertIsFunction(callback);
     var args = [callback];
     if (arguments.length > 2) {
       args.push(arguments[2]);
@@ -35,7 +35,7 @@ if (implemented) {
 } else {
   findIdx = function findIndex(array, callback) {
     var object = toObject(array);
-    assertIsCallable(callback);
+    assertIsFunction(callback);
     var length = toLength(object.length);
     if (length < 1) {
       return -1;
