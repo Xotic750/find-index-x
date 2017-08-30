@@ -23,7 +23,7 @@
 ## find-index-x
 This method returns the index of the first element in the array that satisfies the provided testing function.
 
-**Version**: 1.5.0  
+**Version**: 2.0.0  
 **Author**: Xotic750 <Xotic750@gmail.com>  
 **License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
 **Copyright**: Xotic750  

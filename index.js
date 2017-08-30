@@ -1,6 +1,6 @@
 /**
  * @file This method returns the index of the first element in the array that satisfies the provided testing function.
- * @version 1.5.0
+ * @version 2.0.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -9,12 +9,17 @@
 
 'use strict';
 
-var pFindIndex = Array.prototype.findIndex;
+var pFindIndex = typeof Array.prototype.findIndex === 'function' && Array.prototype.findIndex;
 
-// eslint-disable-next-line no-sparse-arrays
-var implemented = pFindIndex && ([, 1].findIndex(function (item, idx) {
-  return idx === 0;
-}) === 0);
+var implemented;
+if (pFindIndex) {
+  try {
+    // eslint-disable-next-line no-sparse-arrays
+    implemented = pFindIndex.call([, 1], function (item, idx) {
+      return idx === 0;
+    }) === 0;
+  } catch (ignore) {}
+}
 
 var findIdx;
 if (implemented) {
