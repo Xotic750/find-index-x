@@ -21,13 +21,32 @@ if (typeof module === 'object' && module.exports) {
   findIndex = returnExports;
 }
 
+var itHasDoc = typeof document !== 'undefined' && document ? it : xit;
+
 describe('findIndex', function () {
-  var list = [
-    5,
-    10,
-    15,
-    20
-  ];
+  var list;
+  beforeEach(function () {
+    list = [
+      5,
+      10,
+      15,
+      20
+    ];
+  });
+
+  it('should throw when target is null or undefined', function () {
+    expect(function () {
+      findIndex();
+    }).toThrow();
+
+    expect(function () {
+      findIndex(void 0);
+    }).toThrow();
+
+    expect(function () {
+      findIndex(null);
+    }).toThrow();
+  });
 
   it('should have a length of 2', function () {
     expect(findIndex.length).toBe(2);
@@ -72,57 +91,114 @@ describe('findIndex', function () {
 
   it('should work with an array-like object', function () {
     var obj = {
-      0: 1, 1: 2, 2: 3, length: 3
+      0: 1,
+      1: 2,
+      2: 3,
+      length: 3
     };
+
     var foundIndex = findIndex(obj, function (item) {
       return item === 2;
     });
+
     expect(foundIndex).toBe(1);
   });
 
   it('should work with an array-like object with negative length', function () {
     var obj = {
-      0: 1, 1: 2, 2: 3, length: -3
+      0: 1,
+      1: 2,
+      2: 3,
+      length: -3
     };
+
     var foundIndex = findIndex(obj, function (item) {
       throw new Error('should not reach here ' + item);
     });
+
     expect(foundIndex).toBe(-1);
   });
 
   it('should work with a sparse array', function () {
     // eslint-disable-next-line no-sparse-arrays
     var obj = [
-      1, , undefined
+      1, , void 0
     ];
     expect(1 in obj).toBe(false);
     var seen = [];
     var foundIndex = findIndex(obj, function (item, idx) {
       seen.push([idx, item]);
-      return item === undefined && idx === 2;
+      return typeof item === 'undefined' && idx === 2;
     });
     expect(foundIndex).toBe(2);
     expect(seen).toEqual([
       [0, 1],
-      [1, undefined],
-      [2, undefined]
+      [1, void 0],
+      [2, void 0]
     ]);
   });
 
   it('should work with a sparse array-like object', function () {
     var obj = {
-      0: 1, 2: undefined, length: 3.2
+      0: 1,
+      2: void 0,
+      length: 3.2
     };
+
     var seen = [];
     var foundIndex = findIndex(obj, function (item, idx) {
       seen.push([idx, item]);
       return false;
     });
+
     expect(foundIndex).toBe(-1);
     expect(seen).toEqual([
       [0, 1],
-      [1, undefined],
-      [2, undefined]
+      [1, void 0],
+      [2, void 0]
     ]);
+  });
+
+  it('should work with strings', function () {
+    var seen = [];
+    var foundIndex = findIndex('abc', function (item, idx) {
+      seen.push([idx, item]);
+      return false;
+    });
+
+    expect(foundIndex).toBe(-1);
+    expect(seen).toEqual([
+      [0, 'a'],
+      [1, 'b'],
+      [2, 'c']
+    ]);
+  });
+
+  it('should work with arguments', function () {
+    var obj = (function () {
+      return arguments;
+    }('a', 'b', 'c'));
+
+    var seen = [];
+    var foundIndex = findIndex(obj, function (item, idx) {
+      seen.push([idx, item]);
+      return false;
+    });
+
+    expect(foundIndex).toBe(-1);
+    expect(seen).toEqual([
+      [0, 'a'],
+      [1, 'b'],
+      [2, 'c']
+    ]);
+  });
+
+  itHasDoc('should work wih DOM elements', function () {
+    var fragment = document.createDocumentFragment();
+    var div = document.createElement('div');
+    fragment.appendChild(div);
+    var callback = jasmine.createSpy('callback');
+    findIndex(fragment.childNodes, callback);
+    expect(callback).toHaveBeenCalledWith(div, 0, fragment.childNodes);
   });
 });

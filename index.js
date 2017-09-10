@@ -1,6 +1,6 @@
 /**
  * @file This method returns the index of the first element in the array that satisfies the provided testing function.
- * @version 2.0.0
+ * @version 2.1.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -11,18 +11,51 @@
 
 var pFindIndex = typeof Array.prototype.findIndex === 'function' && Array.prototype.findIndex;
 
-var implemented;
+var isWorking;
 if (pFindIndex) {
-  try {
-    // eslint-disable-next-line no-sparse-arrays
-    implemented = pFindIndex.call([, 1], function (item, idx) {
+  var attempt = require('attempt-x');
+  var testArr = [];
+  testArr.length = 2;
+  testArr[1] = 1;
+  var res = attempt.call(testArr, pFindIndex, function (item, idx) {
+    return idx === 0;
+  });
+
+  isWorking = res.threw === false && res.value === 0;
+
+  if (isWorking) {
+    res = attempt.call(1, pFindIndex, function (item, idx) {
       return idx === 0;
-    }) === 0;
-  } catch (ignore) {}
+    });
+
+    isWorking = res.threw === false && res.value === -1;
+  }
+
+  if (isWorking) {
+    isWorking = attempt.call([], pFindIndex).threw;
+  }
+
+  if (isWorking) {
+    res = attempt.call('abc', pFindIndex, function (item) {
+      return item === 'c';
+    });
+
+    isWorking = res.threw === false && res.value === 2;
+  }
+
+  if (isWorking) {
+    res = attempt.call((function () {
+      return arguments;
+    }('a', 'b', 'c')), pFindIndex, function (item) {
+      return item === 'c';
+    });
+
+    isWorking = res.threw === false && res.value === 2;
+  }
 }
 
 var findIdx;
-if (implemented) {
+if (isWorking) {
   findIdx = function findIndex(array, callback) {
     var args = [callback];
     if (arguments.length > 2) {
@@ -34,14 +67,13 @@ if (implemented) {
 } else {
   var toLength = require('to-length-x');
   var toObject = require('to-object-x');
-  var isString = require('is-string');
   var assertIsFunction = require('assert-is-function-x');
-  var splitString = require('has-boxed-string-x') === false;
+  var splitIfBoxedBug = require('split-if-boxed-bug-x');
 
   findIdx = function findIndex(array, callback) {
     var object = toObject(array);
     assertIsFunction(callback);
-    var iterable = splitString && isString(object) ? object.split('') : object;
+    var iterable = splitIfBoxedBug(object);
     var length = toLength(iterable.length);
     if (length < 1) {
       return -1;
