@@ -7,24 +7,23 @@
  * @module find-index-x
  */
 
-'use strict';
+const pFindIndex = typeof Array.prototype.findIndex === 'function' && Array.prototype.findIndex;
 
-var pFindIndex = typeof Array.prototype.findIndex === 'function' && Array.prototype.findIndex;
+let isWorking;
 
-var isWorking;
 if (pFindIndex) {
-  var attempt = require('attempt-x');
-  var testArr = [];
+  const attempt = require('attempt-x');
+  const testArr = [];
   testArr.length = 2;
   testArr[1] = 1;
-  var res = attempt.call(testArr, pFindIndex, function (item, idx) {
+  let res = attempt.call(testArr, pFindIndex, function(item, idx) {
     return idx === 0;
   });
 
   isWorking = res.threw === false && res.value === 0;
 
   if (isWorking) {
-    res = attempt.call(1, pFindIndex, function (item, idx) {
+    res = attempt.call(1, pFindIndex, function(item, idx) {
       return idx === 0;
     });
 
@@ -36,7 +35,7 @@ if (pFindIndex) {
   }
 
   if (isWorking) {
-    res = attempt.call('abc', pFindIndex, function (item) {
+    res = attempt.call('abc', pFindIndex, function(item) {
       return item === 'c';
     });
 
@@ -44,20 +43,26 @@ if (pFindIndex) {
   }
 
   if (isWorking) {
-    res = attempt.call((function () {
-      return arguments;
-    }('a', 'b', 'c')), pFindIndex, function (item) {
-      return item === 'c';
-    });
+    res = attempt.call(
+      (function() {
+        return arguments;
+      })('a', 'b', 'c'),
+      pFindIndex,
+      function(item) {
+        return item === 'c';
+      },
+    );
 
     isWorking = res.threw === false && res.value === 2;
   }
 }
 
-var findIdx;
+let findIdx;
+
 if (isWorking) {
   findIdx = function findIndex(array, callback) {
-    var args = [callback];
+    const args = [callback];
+
     if (arguments.length > 2) {
       args[1] = arguments[2];
     }
@@ -65,26 +70,28 @@ if (isWorking) {
     return pFindIndex.apply(array, args);
   };
 } else {
-  var toLength = require('to-length-x');
-  var toObject = require('to-object-x');
-  var assertIsFunction = require('assert-is-function-x');
-  var splitIfBoxedBug = require('split-if-boxed-bug-x');
+  const toLength = require('to-length-x');
+  const toObject = require('to-object-x');
+  const assertIsFunction = require('assert-is-function-x');
+  const splitIfBoxedBug = require('split-if-boxed-bug-x');
 
   findIdx = function findIndex(array, callback) {
-    var object = toObject(array);
+    const object = toObject(array);
     assertIsFunction(callback);
-    var iterable = splitIfBoxedBug(object);
-    var length = toLength(iterable.length);
+    const iterable = splitIfBoxedBug(object);
+    const length = toLength(iterable.length);
+
     if (length < 1) {
       return -1;
     }
 
-    var thisArg;
+    let thisArg;
+
     if (arguments.length > 2) {
       thisArg = arguments[2];
     }
 
-    var index = 0;
+    let index = 0;
     while (index < length) {
       if (callback.call(thisArg, iterable[index], index, object)) {
         return index;
@@ -102,7 +109,7 @@ if (isWorking) {
  * in the array satisfies the provided testing function. Otherwise -1 is returned.
  *
  * @param {Array} array - The array to search.
- * @throws {TypeError} If array is `null` or `undefined`-
+ * @throws {TypeError} If array is `null` or `undefined`-.
  * @param {Function} callback - Function to execute on each value in the array,
  *  taking three arguments: `element`, `index` and `array`.
  * @throws {TypeError} If `callback` is not a function.
