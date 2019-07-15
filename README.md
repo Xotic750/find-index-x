@@ -21,15 +21,13 @@
 <a name="module_find-index-x"></a>
 
 ## find-index-x
+
 This method returns the index of the first element in the array that satisfies the provided testing function.
 
-**Version**: 2.1.0  
-**Author**: Xotic750 <Xotic750@gmail.com>  
-**License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
-**Copyright**: Xotic750  
 <a name="exp_module_find-index-x--module.exports"></a>
 
 ### `module.exports` ⇒ <code>number</code> ⏏
+
 Like `findIndex`, this method returns an index in the array, if an element
 in the array satisfies the provided testing function. Otherwise -1 is returned.
 
@@ -40,24 +38,27 @@ in the array satisfies the provided testing function. Otherwise -1 is returned.
 - <code>TypeError</code> If array is `null` or `undefined`-
 - <code>TypeError</code> If `callback` is not a function.
 
+| Param     | Type                  | Description                                                                                             |
+| --------- | --------------------- | ------------------------------------------------------------------------------------------------------- |
+| array     | <code>Array</code>    | The array to search.                                                                                    |
+| callback  | <code>function</code> | Function to execute on each value in the array, taking three arguments: `element`, `index` and `array`. |
+| [thisArg] | <code>\*</code>       | Object to use as `this` when executing `callback`.                                                      |
 
-| Param | Type | Description |
-| --- | --- | --- |
-| array | <code>Array</code> | The array to search. |
-| callback | <code>function</code> | Function to execute on each value in the array,  taking three arguments: `element`, `index` and `array`. |
-| [thisArg] | <code>\*</code> | Object to use as `this` when executing `callback`. |
+**Example**
 
-**Example**  
 ```js
-var findIndex = require('find-index-x');
+import findIndex from 'find-index-x';
 
 function isPrime(element, index, array) {
-  var start = 2;
+  let start = 2;
   while (start <= Math.sqrt(element)) {
-    if (element % start++ < 1) {
+    if (element % start < 1) {
       return false;
     }
+
+    start += 1;
   }
+
   return element > 1;
 }
 

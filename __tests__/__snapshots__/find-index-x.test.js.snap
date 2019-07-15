@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`findIndex should throw TypeError when function was not passed 1`] = `"undefined is not a function"`;
+
+exports[`findIndex should throw when target is null or undefined 1`] = `"Array.prototype.findIndex called on null or undefined"`;
+
+exports[`findIndex should throw when target is null or undefined 2`] = `"Array.prototype.findIndex called on null or undefined"`;
+
+exports[`findIndex should throw when target is null or undefined 3`] = `"Array.prototype.findIndex called on null or undefined"`;
