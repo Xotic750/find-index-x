@@ -4,7 +4,7 @@ const itHasDoc = typeof document !== 'undefined' && document ? it : xit;
 
 describe('findIndex', function() {
   let list;
-  /* eslint-disable-next-line jest/no-hooks */
+
   beforeEach(function() {
     list = [5, 10, 15, 20];
   });
@@ -16,7 +16,6 @@ describe('findIndex', function() {
     }).toThrowErrorMatchingSnapshot();
 
     expect(function() {
-      /* eslint-disable-next-line no-void */
       findIndex(void 0);
     }).toThrowErrorMatchingSnapshot();
 
@@ -112,7 +111,7 @@ describe('findIndex', function() {
   it('should work with a sparse array', function() {
     expect.assertions(3);
     // noinspection JSConsecutiveCommasInArrayLiteral
-    const obj = [1, , void 0]; /* eslint-disable-line no-void,no-sparse-arrays */
+    const obj = [1, , void 0]; /* eslint-disable-line no-sparse-arrays */
     expect(1 in obj).toBe(false);
     const seen = [];
     const foundIndex = findIndex(obj, function(item, idx) {
@@ -121,7 +120,7 @@ describe('findIndex', function() {
       return typeof item === 'undefined' && idx === 2;
     });
     expect(foundIndex).toBe(2);
-    /* eslint-disable-next-line no-void */
+
     expect(seen).toStrictEqual([[0, 1], [1, void 0], [2, void 0]]);
   });
 
@@ -129,7 +128,7 @@ describe('findIndex', function() {
     expect.assertions(2);
     const obj = {
       0: 1,
-      /* eslint-disable-next-line no-void */
+
       2: void 0,
       length: 3.2,
     };
@@ -142,7 +141,7 @@ describe('findIndex', function() {
     });
 
     expect(foundIndex).toBe(-1);
-    /* eslint-disable-next-line no-void */
+
     expect(seen).toStrictEqual([[0, 1], [1, void 0], [2, void 0]]);
   });
 
@@ -162,7 +161,6 @@ describe('findIndex', function() {
   it('should work with arguments', function() {
     expect.assertions(2);
     const obj = (function() {
-      /* eslint-disable-next-line prefer-rest-params */
       return arguments;
     })('a', 'b', 'c');
 
