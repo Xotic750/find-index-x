@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-24T00:43:57.674Z",
+  "date": "2019-07-24T16:50:14.796Z",
   "describe": "",
   "description": "This method returns the index of the first element in the array that satisfies the provided testing function.",
   "file": "find-index-x.js",
   "hash": "488db9b24735948fbefe",
   "license": "MIT",
-  "version": "3.0.11"
+  "version": "3.0.12"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
