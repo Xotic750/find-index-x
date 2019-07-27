@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-27T08:56:53.576Z",
+  "date": "2019-07-27T14:49:29.118Z",
   "describe": "",
   "description": "This method returns the index of the first element in the array that satisfies the provided testing function.",
   "file": "find-index-x.js",
-  "hash": "488db9b24735948fbefe",
+  "hash": "41575a9a84f738fe87b3",
   "license": "MIT",
-  "version": "3.0.15"
+  "version": "3.0.16"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1280,8 +1280,6 @@ var binaryRadix = 2;
 var octalRadix = 8;
 var testCharsCount = 2;
 var to_number_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a number';
-/** @type {NumberConstructor} */
-
 var to_number_x_esm_castNumber = testCharsCount.constructor;
 var pStrSlice = to_number_x_esm_ERROR_MESSAGE.slice;
 var binaryRegex = /^0b[01]+$/i;
