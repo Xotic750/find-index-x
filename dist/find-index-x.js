@@ -2,7 +2,7 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-31T17:48:42.485Z",
+  "date": "2019-07-31T20:06:17.569Z",
   "describe": "",
   "description": "This method returns the index of the first element in the array that satisfies the provided testing function.",
   "file": "find-index-x.js",
