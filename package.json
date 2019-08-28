@@ -1,6 +1,6 @@
 {
   "name": "find-index-x",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "This method returns the index of the first element in the array that satisfies the provided testing function.",
   "homepage": "https://github.com/Xotic750/find-index-x",
   "author": {
@@ -51,11 +51,11 @@
     "url": "https://github.com/Xotic750/find-index-x/issues"
   },
   "dependencies": {
-    "assert-is-function-x": "^3.1.1",
-    "attempt-x": "^2.1.1",
-    "split-if-boxed-bug-x": "^2.1.1",
-    "to-length-x": "^4.2.1",
-    "to-object-x": "^2.2.0"
+    "assert-is-function-x": "^3.1.2",
+    "attempt-x": "^2.1.2",
+    "split-if-boxed-bug-x": "^2.1.2",
+    "to-length-x": "^4.2.2",
+    "to-object-x": "^2.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
