@@ -121,7 +121,11 @@ describe('findIndex', function() {
     });
     expect(foundIndex).toBe(2);
 
-    expect(seen).toStrictEqual([[0, 1], [1, void 0], [2, void 0]]);
+    expect(seen).toStrictEqual([
+      [0, 1],
+      [1, void 0],
+      [2, void 0],
+    ]);
   });
 
   it('should work with a sparse array-like object', function() {
@@ -142,7 +146,11 @@ describe('findIndex', function() {
 
     expect(foundIndex).toBe(-1);
 
-    expect(seen).toStrictEqual([[0, 1], [1, void 0], [2, void 0]]);
+    expect(seen).toStrictEqual([
+      [0, 1],
+      [1, void 0],
+      [2, void 0],
+    ]);
   });
 
   it('should work with strings', function() {
@@ -155,7 +163,11 @@ describe('findIndex', function() {
     });
 
     expect(foundIndex).toBe(-1);
-    expect(seen).toStrictEqual([[0, 'a'], [1, 'b'], [2, 'c']]);
+    expect(seen).toStrictEqual([
+      [0, 'a'],
+      [1, 'b'],
+      [2, 'c'],
+    ]);
   });
 
   it('should work with arguments', function() {
@@ -172,7 +184,11 @@ describe('findIndex', function() {
     });
 
     expect(foundIndex).toBe(-1);
-    expect(seen).toStrictEqual([[0, 'a'], [1, 'b'], [2, 'c']]);
+    expect(seen).toStrictEqual([
+      [0, 'a'],
+      [1, 'b'],
+      [2, 'c'],
+    ]);
   });
 
   itHasDoc('should work wih DOM elements', function() {
